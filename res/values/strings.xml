@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">6NUM</string>
+    <string name="doubango_revision">653</string>
+   	<string name="spinner_ipversion">Select IP version</string>
+	<string name="spinner_pcscf_discovery">Select PCSCF Discovery Mode</string>
+	<string name="spinner_transport">Select Network Transport</string>
+    
+    <!-- Strings -->
+    <string name="day_today">Today</string>
+    <string name="day_yesterday">Yesterday</string>
+    
+    <string name="copyright" formatted="false">
+    \n\n
+    6NUM-Droid r%s\n
+    Doubango v%s\n\n
+   </string>
+  
+  <string name="string_answer">Answer</string>
+    <string name="string_endcall">End Call</string>
+    <string name="string_speaker_on">Speaker ON</string>
+    <string name="string_speaker_off">Speaker OFF</string>
+    <string name="string_hold">Hold</string>
+	<string name="string_resume">Resume</string>
+	<string name="string_send_video">Send Video</string>
+	<string name="string_stop_video">Stop Video</string>
+	<string name="string_switch_camera">Switch camera</string>
+  <string name="string_call_terminated">Call Terminated</string> 
+  <string name="string_incall">In Call</string> 
+  <string name="string_call_incoming">Incoming Call</string>
+  <string name="string_call_outgoing">Outgoing Call</string>
+  <string name="string_call_cancelled">Call cancelled</string> 
+  
+    <!-- Colors -->
+    <color name="color_black">#000000</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_violet">#9900FF</color>
+    <color name="color_gray">#736F6E</color>
+    <color name="color_dark">#161C27</color>
+    <color name="color_light">#4D6288</color>
+</resources>

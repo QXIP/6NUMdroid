@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent"  android:windowSoftInputMode="stateUnchanged">
+
+
+
+<GridView xmlns:android="http://schemas.android.com/apk/res/android" 
+	 android:paddingTop="185dp" android:padding="10dp" android:verticalSpacing="10dp" android:horizontalSpacing="10dp" 
+	android:id="@+id/screen_settings_gridview" android:layout_width="fill_parent" android:layout_height="fill_parent" android:numColumns="auto_fit" android:isScrollContainer="true" android:scrollbars="vertical" android:columnWidth="60dp" android:stretchMode="columnWidth" android:layout_gravity="center_vertical|fill_horizontal" android:layout_below="@+id/screen_identity_extra_display_top">
+</GridView>
+
+<LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/screen_identity_extra_display_top" android:weightSum="2" android:gravity="center" android:background="@color/color_dark">
+	        <TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/screen_identity_extra_display" android:textColor="@color/color_white" android:gravity="center" android:layout_margin="3px" android:layout_weight="2" android:background="@color/color_dark" android:textSize="18dp" android:layout_gravity="center_horizontal"></TextView>
+			
+</LinearLayout>
+	    
+</RelativeLayout>
