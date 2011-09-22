@@ -20,8 +20,11 @@
 package org.doubango.imsdroid.Screens;
 
 import org.doubango.imsdroid.IMSDroid;
+//import org.doubango.imsdroid.Main;
+import org.doubango.imsdroid.Screens.ScreenHome;
 import org.doubango.sixnum.R;
 import org.doubango.ngn.services.INgnConfigurationService;
+import org.doubango.ngn.services.INgnSipService;
 import org.doubango.ngn.utils.NgnConfigurationEntry;
 import org.doubango.ngn.utils.NgnStringUtils;
 
@@ -37,19 +40,25 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
+import android.os.Handler;
+
 //import android.preference.PreferenceManager;
 
 
 public class ScreenAbout extends BaseScreen {
 	private static final String TAG = ScreenAbout.class.getCanonicalName();
 	private final INgnConfigurationService mConfigurationService;
+	private final INgnSipService mSipService;
 	
+	 private Handler refresh = new Handler();
+	 
 	WebView webview;
 	
 	public ScreenAbout() {
 		super(SCREEN_TYPE.ABOUT_T, TAG);
 		
 		mConfigurationService = getEngine().getConfigurationService();
+		mSipService = getEngine().getSipService();
 	}
 
 	@Override
@@ -133,8 +142,8 @@ public class ScreenAbout extends BaseScreen {
 			mConfigurationService.putString(NgnConfigurationEntry.NETWORK_REALM, 
 					domain.toString().trim());
 			mConfigurationService.putString(NgnConfigurationEntry.NETWORK_PCSCF_HOST,
-					//"46.182.105.238".toString().trim());
-					"prox.6num.net".toString().trim());
+					"46.182.105.238".toString().trim());
+					//"prox.6num.net".toString().trim());
 
 			// Compute & commit
 						if(!mConfigurationService.commit()){
@@ -145,11 +154,16 @@ public class ScreenAbout extends BaseScreen {
 							}
 			
 			// Switch to Settings Page for Auto-Calibration & Exit Activity
-			webview.destroy();
-			mScreenService.show(ScreenHome.class);
+			//webview.destroy();
+			//mScreenService.show(ScreenHome.class);
+						 refresh.post(new Runnable() {
+				                public void run() {
+				                	mSipService.register(ScreenAbout.this);
+				                	mScreenService.show(ScreenHome.class);
+				                }
+				            });
 			// the ugly way
-			finish();
-			 
+			//finish();
 	    }
 	}
 
