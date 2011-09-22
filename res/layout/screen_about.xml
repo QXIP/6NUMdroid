@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:id="@+id/relativeLayout1" android:layout_height="fill_parent" android:gravity="left">
+    <ScrollView android:layout_width="fill_parent" android:paddingTop="85dp" 
+               android:layout_height="fill_parent" android:layout_weight="1">
     <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/webview"
     android:layout_width="fill_parent"
-    android:paddingTop="85dp" 
-     android:windowSoftInputMode="adjustResize"
+    android:windowSoftInputMode="adjustResize" 
     android:layout_height="fill_parent" android:layout_below="@+id/imageView1"/>
+    </ScrollView>
     <TextView android:layout_margin="5dip" android:gravity="right" android:id="@+id/screen_about_textView_copyright" android:text="@string/copyright" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignRight="@+id/imageView1" android:layout_alignParentRight="true"></TextView>
             <ImageView android:src="@drawable/inumdroid_small" android:layout_width="wrap_content" android:id="@+id/imageView1" android:layout_height="wrap_content" android:layout_alignTop="@+id/screen_about_textView_copyright" android:layout_alignParentLeft="true"></ImageView>
     
