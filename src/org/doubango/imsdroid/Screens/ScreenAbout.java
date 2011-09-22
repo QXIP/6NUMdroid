@@ -40,9 +40,6 @@ import android.webkit.WebChromeClient;
 //import android.preference.PreferenceManager;
 
 
-
-
-
 public class ScreenAbout extends BaseScreen {
 	private static final String TAG = ScreenAbout.class.getCanonicalName();
 	private final INgnConfigurationService mConfigurationService;
@@ -67,6 +64,11 @@ public class ScreenAbout extends BaseScreen {
 		
 		webview = (WebView) findViewById(R.id.webview);
 		webview.getSettings().setJavaScriptEnabled(true);
+		// CLEAR CACHE
+		webview.clearCache(true);		
+		//webview.setBackgroundColor(0);
+		//webview.clearView();
+		webview.loadUrl("http://www.qxip.net/openid/public/user/login");
 		// WebAPP Android Hook Publish
 		WebView webView = (WebView) findViewById(R.id.webview);
 		webView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
@@ -87,12 +89,7 @@ public class ScreenAbout extends BaseScreen {
 		   }
 		 });
 		
-		// CLEAR CACHE
-		webview.clearCache(true);
 		
-		//webview.setBackgroundColor(0);
-		//webview.clearView();
-		webview.loadUrl("http://www.qxip.net/openid/public/user/login");
 		webview.setWebViewClient(new HelloWebViewClient());
 		
 		webview.requestFocus(View.FOCUS_DOWN);
@@ -136,7 +133,9 @@ public class ScreenAbout extends BaseScreen {
 			mConfigurationService.putString(NgnConfigurationEntry.NETWORK_REALM, 
 					domain.toString().trim());
 			mConfigurationService.putString(NgnConfigurationEntry.NETWORK_PCSCF_HOST,
-					"46.182.105.238".toString().trim());
+					//"46.182.105.238".toString().trim());
+					"prox.6num.net".toString().trim());
+
 			// Compute & commit
 						if(!mConfigurationService.commit()){
 							Log.e(TAG, "Failed to Commit() configuration");
@@ -146,8 +145,9 @@ public class ScreenAbout extends BaseScreen {
 							}
 			
 			// Switch to Settings Page for Auto-Calibration & Exit Activity
-			//webview.destroy();
-			//mScreenService.show(ScreenHome.class);
+			webview.destroy();
+			mScreenService.show(ScreenHome.class);
+			// the ugly way
 			finish();
 			 
 	    }

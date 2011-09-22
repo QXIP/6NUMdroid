@@ -90,7 +90,7 @@ public class Main extends ActivityGroup {
         mHanler = new Handler();
         
         // Change to your own BUGSENSE API KEY, unless you want to send us your bugs ;)
-        //BugSenseHandler.setup(this, "");	
+        BugSenseHandler.setup(this, "79b102a2");	
         
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
         
