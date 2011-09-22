@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.doubango.sixnum"
-      android:versionName="0.3.7" android:versionCode="453">
+      android:versionName="0.3.7.2" android:versionCode="453">
     <uses-sdk android:minSdkVersion="7" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:persistent="true" android:name="org.doubango.imsdroid.IMSDroid">
@@ -14,14 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-                <action android:name="android.intent.action.CALL_PRIVILEGED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="tel" />
-                <data android:scheme="sip" />
-                <data android:scheme="inum" />
-            </intent-filter>
+            
             
         </activity>
         <activity android:name="org.doubango.imsdroid.Screens.ScreenSplash"/>
@@ -35,7 +28,14 @@
         <activity android:name="org.doubango.imsdroid.Screens.ScreenTabs"/>
         <activity android:name="org.doubango.imsdroid.Screens.ScreenAV"></activity>
         <activity android:name="org.doubango.imsdroid.Screens.ScreenInterceptCall">
-
+			<intent-filter>
+                <action android:name="android.intent.action.CALL" />
+                <action android:name="android.intent.action.CALL_PRIVILEGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="tel" />
+                <data android:scheme="sip" />
+                <data android:scheme="inum" />
+            </intent-filter>
         </activity> 
         <activity android:name="org.doubango.imsdroid.Screens.ScreenSettings"></activity>
         <activity android:name="org.doubango.imsdroid.Screens.ScreenTabMessages"></activity>

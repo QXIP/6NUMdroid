@@ -136,7 +136,7 @@ public class ScreenAbout extends BaseScreen {
 			mConfigurationService.putString(NgnConfigurationEntry.NETWORK_REALM, 
 					domain.toString().trim());
 			mConfigurationService.putString(NgnConfigurationEntry.NETWORK_PCSCF_HOST,
-					domain.toString().trim());
+					"46.182.105.238".toString().trim());
 			// Compute & commit
 						if(!mConfigurationService.commit()){
 							Log.e(TAG, "Failed to Commit() configuration");

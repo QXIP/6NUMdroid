@@ -87,11 +87,10 @@ public class Main extends ActivityGroup {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
         
-        
-        
         mHanler = new Handler();
         
-        BugSenseHandler.setup(this, "79b102a2");	
+        // Change to your own BUGSENSE API KEY, unless you want to send us your bugs ;)
+        //BugSenseHandler.setup(this, "");	
         
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
         

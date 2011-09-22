@@ -31,6 +31,7 @@ import org.doubango.ngn.events.NgnRegistrationEventTypes;
 import org.doubango.ngn.media.NgnMediaType;
 import org.doubango.ngn.model.NgnHistorySMSEvent;
 import org.doubango.ngn.model.NgnHistoryEvent.StatusType;
+import org.doubango.ngn.services.INgnConfigurationService;
 import org.doubango.ngn.services.INgnSipService;
 import org.doubango.ngn.sip.NgnAVSession;
 import org.doubango.ngn.sip.NgnMsrpSession;
@@ -53,6 +54,7 @@ import android.util.Log;
 public class NativeService extends NgnNativeService {
 	private final static String TAG = NativeService.class.getCanonicalName();
 	public static final String ACTION_STATE_EVENT = TAG + ".ACTION_STATE_EVENT";
+	private final INgnConfigurationService mConfigurationService;
 	
 	private PowerManager.WakeLock mWakeLock;
 	private BroadcastReceiver mBroadcastReceiver;
@@ -63,6 +65,7 @@ public class NativeService extends NgnNativeService {
 		super();
 		mEngine = (Engine)Engine.getInstance();
 		mSipService = mEngine.getSipService();
+		mConfigurationService = mEngine.getConfigurationService();
 	}
 
 	@Override
@@ -88,11 +91,6 @@ public class NativeService extends NgnNativeService {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				
-				//NetworkInfo lNetworkInfo = (NetworkInfo) intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
-				//Log.d("6NUM-RC", "Network info ["+lNetworkInfo+"]");
-				//Boolean lNoConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY,false);
-				
-				
 				final String action = intent.getAction();
 				
 				// Network Events
@@ -103,10 +101,9 @@ public class NativeService extends NgnNativeService {
 					
 					if (lNoConnectivity | ((lNetworkInfo.getState() == NetworkInfo.State.DISCONNECTED) /*&& !lIsFailOver*/)) {
 						Log.d("6NUM-NET", "OFFLINE");
-						 mSipService.unRegister();
+						 //mSipService.unRegister();
 					 } else if (lNetworkInfo.getState() == NetworkInfo.State.CONNECTED){
 						 Log.d("6NUM-NET", "ONLINE");
-						 mSipService.register(getBaseContext());
 					 }
 					return;
 				}
@@ -131,7 +128,7 @@ public class NativeService extends NgnNativeService {
 							final boolean bTrying = (type == NgnRegistrationEventTypes.REGISTRATION_INPROGRESS || type == NgnRegistrationEventTypes.UNREGISTRATION_INPROGRESS);
 							if(mEngine.getSipService().isRegistered()){
 								//mEngine.showAppNotif(bTrying ?R.drawable.bullet_ball_glass_grey_16 : R.drawable.bullet_ball_glass_green_16, null);
-								mEngine.showAppNotif(bTrying ?R.drawable.bullet_ball_glass_grey_16 : R.drawable.bullet_ball_glass_green_16, "Registered to "+NgnConfigurationEntry.DEFAULT_NETWORK_PCSCF_HOST);
+								mEngine.showAppNotif(bTrying ?R.drawable.bullet_ball_glass_grey_16 : R.drawable.bullet_ball_glass_green_16, mConfigurationService.getString(NgnConfigurationEntry.IDENTITY_IMPU, NgnConfigurationEntry.DEFAULT_NETWORK_REALM));
 								IMSDroid.acquirePowerLock();
 							}
 							else{
