@@ -197,6 +197,10 @@ public class ScreenHome extends BaseScreen {
 					}  else { mSipService.register(ScreenHome.this);  }
 		} else {
 			// if not, hand over to provisioning module
+			// Alex added an iNum check
+			boolean inum = mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_INUM_PROV,NgnConfigurationEntry.DEFAULT_GENERAL_INUM_PROV);
+
+			if  (inum) {
 			CustomDialog.show(
 					ScreenHome.this,
 					R.drawable.about_48,
@@ -206,13 +210,7 @@ public class ScreenHome extends BaseScreen {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// Alex added an iNum check
-							boolean inum = mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_INUM_PROV,NgnConfigurationEntry.DEFAULT_GENERAL_INUM_PROV);
-
-							if  (inum)
 								mScreenService.show(ScreenAbout.class);
-							else
-								dialog.cancel();
 						}
 					}, "No",
 					new DialogInterface.OnClickListener() {
@@ -221,6 +219,7 @@ public class ScreenHome extends BaseScreen {
 							dialog.cancel();
 						}
 					});
+			}
 			
 		 } 
 		
