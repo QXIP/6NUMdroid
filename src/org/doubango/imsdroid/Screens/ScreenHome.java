@@ -206,7 +206,13 @@ public class ScreenHome extends BaseScreen {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							mScreenService.show(ScreenAbout.class);
+							// Alex added an iNum check
+							boolean inum = mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_INUM_PROV,NgnConfigurationEntry.DEFAULT_GENERAL_INUM_PROV);
+
+							if  (inum)
+								mScreenService.show(ScreenAbout.class);
+							else
+								dialog.cancel();
 						}
 					}, "No",
 					new DialogInterface.OnClickListener() {
@@ -366,7 +372,10 @@ public class ScreenHome extends BaseScreen {
 	@Override
 	public boolean createOptionsMenu(Menu menu) {
 		menu.add(0, ScreenHome.MENU_SETTINGS, 0, "Contacts");
-		menu.add(0, ScreenHome.MENU_TABS, 0, "Provision");
+		// Alex added an iNum check
+		boolean inum = mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_INUM_PROV,NgnConfigurationEntry.DEFAULT_GENERAL_INUM_PROV);
+		if  (inum)
+			menu.add(0, ScreenHome.MENU_TABS, 0, "Provision");
 		menu.add(0, ScreenHome.MENU_MESSAGES, 0, "Messages");
 		/*MenuItem itemExit =*/ menu.add(0, ScreenHome.MENU_EXIT, 0, "Exit");
 		

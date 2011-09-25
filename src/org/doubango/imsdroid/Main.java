@@ -50,7 +50,7 @@ import android.view.MenuItem;
 import android.view.Window;
 
 //BUG SENSE
-import com.bugsense.trace.BugSenseHandler;
+//import com.bugsense.trace.BugSenseHandler;
 
 public class Main extends ActivityGroup {
 	private static String TAG = Main.class.getCanonicalName();
@@ -90,7 +90,7 @@ public class Main extends ActivityGroup {
         mHanler = new Handler();
         
         // Change to your own BUGSENSE API KEY, unless you want to send us your bugs ;)
-        BugSenseHandler.setup(this, "79b102a2");	
+//        BugSenseHandler.setup(this, "79b102a2");	
         
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
         

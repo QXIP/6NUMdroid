@@ -43,6 +43,7 @@ public class ScreenGeneral  extends BaseScreen {
 	private EditText mEtEnumDomain;
 	private CheckBox mCbAEC;
 	private CheckBox mCbVAD;
+	private CheckBox mCbINUM; /* Alex Added inum checkbox */
 	private CheckBox mCbNR;
 	
 	private final INgnConfigurationService mConfigurationService;
@@ -67,6 +68,8 @@ public class ScreenGeneral  extends BaseScreen {
         mCbFullScreenVideo = (CheckBox)findViewById(R.id.screen_general_checkBox_fullscreen);
         mCbInterceptOutgoingCalls = (CheckBox)findViewById(R.id.screen_general_checkBox_interceptCall);
         mCbFFC = (CheckBox)findViewById(R.id.screen_general_checkBox_ffc);
+        /* Alex Added the iNum checkbox */
+        mCbINUM = (CheckBox)findViewById(R.id.screen_general_checkBox_inum);
         mCbAutoStart = (CheckBox)findViewById(R.id.screen_general_checkBox_autoStart);
         mSpAudioPlaybackLevel = (Spinner)findViewById(R.id.screen_general_spinner_playback_level);
         mEtEnumDomain = (EditText)findViewById(R.id.screen_general_editText_enum_domain);
@@ -85,6 +88,8 @@ public class ScreenGeneral  extends BaseScreen {
         mCbAutoStart.setChecked(mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_AUTOSTART, NgnConfigurationEntry.DEFAULT_GENERAL_AUTOSTART));
         mCbAEC.setChecked(mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_AEC,NgnConfigurationEntry.DEFAULT_GENERAL_AEC));
         mCbVAD.setChecked(mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_VAD,NgnConfigurationEntry.DEFAULT_GENERAL_VAD));
+        /* Alex Added for iNum */
+        mCbINUM.setChecked(mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_INUM_PROV,NgnConfigurationEntry.DEFAULT_GENERAL_INUM_PROV));
         mCbNR.setChecked(mConfigurationService.getBoolean(NgnConfigurationEntry.GENERAL_NR,NgnConfigurationEntry.DEFAULT_GENERAL_NR));
         
         mSpAudioPlaybackLevel.setSelection(getSpinnerIndex(
@@ -102,6 +107,7 @@ public class ScreenGeneral  extends BaseScreen {
         super.addConfigurationListener(mCbAEC);
         super.addConfigurationListener(mCbVAD);
         super.addConfigurationListener(mCbNR);
+        super.addConfigurationListener(mCbINUM); //Alex added for iNum
 	}
 	
 	protected void onPause() {
@@ -116,6 +122,7 @@ public class ScreenGeneral  extends BaseScreen {
 			mConfigurationService.putBoolean(NgnConfigurationEntry.GENERAL_AEC, mCbAEC.isChecked());
 			mConfigurationService.putBoolean(NgnConfigurationEntry.GENERAL_VAD, mCbVAD.isChecked());
 			mConfigurationService.putBoolean(NgnConfigurationEntry.GENERAL_NR, mCbNR.isChecked());
+			mConfigurationService.putBoolean(NgnConfigurationEntry.GENERAL_INUM_PROV, mCbINUM.isChecked()); //Alex added for iNUM
 			
 			// Compute
 			if(!mConfigurationService.commit()){
